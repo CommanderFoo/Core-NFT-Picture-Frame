@@ -46,7 +46,7 @@ function API.LoadPlayerInventory(player, root)
 	if(string.len(set_collection) > 1) then
 		tokens = Blockchain.GetTokens(set_collection)
 	else
-		tokens = Blockchain.GetTokensForPlayer(player.id)
+		tokens = Blockchain.GetTokensForPlayer(player)
 	end
 
 	if(tokens) then
