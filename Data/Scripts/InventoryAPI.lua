@@ -44,17 +44,9 @@ function API.LoadPlayerInventory(player, root)
 	Task.Wait()
 	
 	if(string.len(set_collection) > 1) then
-		tokens = Blockchain.GetTokens({
-			
-			contractAddress = set_collection
-
-		})
+		tokens = Blockchain.GetTokens(set_collection)
 	else
-		tokens = Blockchain.GetTokens({
-
-			playerId = player.id
-
-		})
+		tokens = Blockchain.GetTokensForPlayer(player.id)
 	end
 
 	if(tokens) then

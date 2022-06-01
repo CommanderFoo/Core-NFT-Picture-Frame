@@ -54,6 +54,20 @@ Objects {
         }
       }
     }
+    ParameterOverrideMap {
+      key: 11399100292721880408
+      value {
+        Overrides {
+          Name: "cs:CreatorStorageKey"
+          NetReference {
+            Key: "bcb779de844b44fbb8cd62b26af8a783"
+            Type {
+              Value: "mc:enetreferencetype:concurrentpersistence"
+            }
+          }
+        }
+      }
+    }
     TemplateAsset {
       Id: 3970897973384026206
     }
