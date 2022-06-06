@@ -32386,8 +32386,9 @@ Assets {
           Overrides {
             Name: "cs:CreatorStorageKey"
             NetReference {
+              Key: "70acc3f65634434d820fe2abf716f862"
               Type {
-                Value: "mc:enetreferencetype:unknown"
+                Value: "mc:enetreferencetype:concurrentpersistence"
               }
             }
           }
@@ -32424,6 +32425,7 @@ Assets {
         }
         Folder {
           IsFilePartition: true
+          FilePartitionName: "NFT Picture Frame System"
         }
         NetworkRelevanceDistance {
           Value: "mc:eproxyrelevance:critical"
@@ -35708,6 +35710,12 @@ Assets {
             Name: "cs:Icons"
             AssetReference {
               Id: 14579752115360909097
+            }
+          }
+          Overrides {
+            Name: "cs:Queue"
+            AssetReference {
+              Id: 13404373394595856142
             }
           }
         }

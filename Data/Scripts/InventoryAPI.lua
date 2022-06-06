@@ -96,6 +96,9 @@ function API.LoadPlayerInventory(player, root)
 			end
 		end
 	end
+
+	Task.Wait()
+	Events.BroadcastToPlayer(player, "FetchTokens")
 end
 
 function API.RemovePlayerInventory(player)

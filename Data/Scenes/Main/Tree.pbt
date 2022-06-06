@@ -15,7 +15,7 @@ Objects {
     }
   }
   ChildIds: 1827972203888149841
-  ChildIds: 16925212734311007428
+  ChildIds: 9165938531261343771
   UnregisteredParameters {
   }
   Collidable_v2 {
@@ -34,7 +34,7 @@ Objects {
   }
 }
 Objects {
-  Id: 16925212734311007428
+  Id: 9165938531261343771
   Name: "NFT Pictrure Frame - Example"
   Transform {
     Scale {
@@ -51,20 +51,6 @@ Objects {
         Overrides {
           Name: "Name"
           String: "NFT Pictrure Frame - Example"
-        }
-      }
-    }
-    ParameterOverrideMap {
-      key: 11399100292721880408
-      value {
-        Overrides {
-          Name: "cs:CreatorStorageKey"
-          NetReference {
-            Key: "bcb779de844b44fbb8cd62b26af8a783"
-            Type {
-              Value: "mc:enetreferencetype:concurrentpersistence"
-            }
-          }
         }
       }
     }

@@ -74,15 +74,19 @@ local function update_frame(key, entry)
 	for index, frame in ipairs(PICTURE_FRAMES:GetChildren()) do
 		if(string.find(frame.id, key)) then
 			Task.Spawn(function()
-				local token = Blockchain.GetToken(entry[2], entry[3])
+				pcall(function()
+					local token = Blockchain.GetToken(entry[2], entry[3])
 
-				if(token) then
-					_G.tokens[entry[2] .. entry[3]] = token
-					frame:FindDescendantByType("UIContainer").visibility = Visibility.INHERIT
-					frame:FindDescendantByName("Picture"):SetBlockchainToken(token)
-					frame:FindDescendantByName("Info").text = token.name
-				end
-			end) 
+					if(token) then
+						_G.tokens[entry[2] .. entry[3]] = token
+						frame:FindDescendantByType("UIContainer").visibility = Visibility.INHERIT
+						frame:FindDescendantByName("Picture"):SetBlockchainToken(token)
+						frame:FindDescendantByName("Info").text = token.name
+					end
+				end)
+			end)
+
+			Task.Wait(1)
 		end
 	end
 end
