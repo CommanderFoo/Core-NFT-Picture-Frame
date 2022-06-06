@@ -86,7 +86,7 @@ local function update_frame(key, entry)
 				end)
 			end)
 
-			Task.Wait(1)
+			Task.Wait(8)
 		end
 	end
 end

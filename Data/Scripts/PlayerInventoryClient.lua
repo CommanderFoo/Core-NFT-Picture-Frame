@@ -130,7 +130,7 @@ local function LoadTokens()
 	end
 
 	elapsedTime = 0
-	Task.Wait(4)
+	Task.Wait(8)
 	fetchingTokens = false
 end
 
