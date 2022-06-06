@@ -59,6 +59,7 @@ local function InventoryChanged(inv, slot)
 				address = address,
 				tokenId = tokenId,
 				childIcon = childIcon,
+				slot = slot
 
 			})
 		elseif(_G.tokens[address .. tokenId] ~= nil) then
@@ -91,46 +92,34 @@ local function on_action_pressed(player, action)
 	end
 end
 
-local function LoadTokens()
-	local token1 = tokenQueue:pop()
-	local token2 = tokenQueue:pop()
+local function LoadToken()
+	local current = tokenQueue:pop()
 
 	fetchingTokens = true
 
-	print("----------FETCH-----------")
-
-	if(token1 ~= nil) then
-		pcall(function()
-			local token = Blockchain.GetToken(token1.address, token1.tokenId)
+	if(current ~= nil) then
+		local status, err = pcall(function()
+			local token = Blockchain.GetToken(current.address, current.tokenId)
 
 			if(token) then
-				_G.tokens[token1.address .. token1.tokenId] = token
+				_G.tokens[current.address .. current.tokenId] = token
 
-				token1.childIcon:SetBlockchainToken(_G.tokens[token1.address .. token1.tokenId])
-				token1.childIcon.visibility = Visibility.FORCE_ON
-		
-				print("Fetched: ", _G.tokens[token1.address .. token1.tokenId].name, elapsedTime)
+				current.childIcon:SetBlockchainToken(token)
+				current.childIcon.visibility = Visibility.FORCE_ON
+
+				print(string.format("Success: Token %s for slot %s. Time took %s", current.tokenId, current.slot, elapsedTime))
 			end
 		end)
-	end
 
-	if(token2 ~= nil) then
-		pcall(function()
-			local token = Blockchain.GetToken(token2.address, token2.tokenId)
+		if(not status) then
+			local _, e = CoreString.Split(err, "failed:")
 
-			if(token) then
-				_G.tokens[token2.address .. token2.tokenId] = token
-
-				token2.childIcon:SetBlockchainToken(_G.tokens[token2.address .. token2.tokenId])
-				token2.childIcon.visibility = Visibility.FORCE_ON
-
-				print("Fetched: ", _G.tokens[token2.address .. token2.tokenId].name, elapsedTime)
-			end
-		end)
+			print(string.format("Fail: Token %s for slot %s. Time took %s. Error: %s", current.tokenId, current.slot, elapsedTime, e))
+		end
 	end
 
 	elapsedTime = 0
-	Task.Wait(8)
+	Task.Wait(4)
 	fetchingTokens = false
 end
 
@@ -151,7 +140,7 @@ function Tick(dt)
 	elapsedTime = elapsedTime + dt
 
 	if(canFetchTokens and not fetchingTokens and not tokenQueue:is_empty()) then
-		Task.Spawn(LoadTokens)
+		Task.Spawn(LoadToken)
 	end
 end
 
@@ -162,5 +151,6 @@ ConnectSlotEvents()
 
 Events.Connect("inventory.open", open_inventory)
 Events.Connect("FetchTokens", function()
+	Task.Wait()
 	canFetchTokens = true
 end)
