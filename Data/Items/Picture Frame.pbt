@@ -2,7 +2,7 @@ Assets {
   Id: 8782854598170139823
   Name: "Picture Frame"
   PlatformAssetType: 33
-  SerializationVersion: 115
+  SerializationVersion: 116
   VirtualFolderPath: "NFT Picture Frame"
   VirtualFolderPath: "Inventory"
   ItemAsset {

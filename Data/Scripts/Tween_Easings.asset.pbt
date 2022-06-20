@@ -6,7 +6,7 @@ Assets {
     CustomParameters {
     }
   }
-  SerializationVersion: 115
+  SerializationVersion: 116
   VirtualFolderPath: "NFT Picture Frame"
   VirtualFolderPath: "Tween"
 }

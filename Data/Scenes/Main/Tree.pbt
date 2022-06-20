@@ -52,6 +52,16 @@ Objects {
           Name: "Name"
           String: "NFT Pictrure Frame - Example"
         }
+        Overrides {
+          Name: "Position"
+          Vector {
+          }
+        }
+        Overrides {
+          Name: "Rotation"
+          Rotator {
+          }
+        }
       }
     }
     TemplateAsset {

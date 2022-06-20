@@ -12,7 +12,7 @@ Assets {
       }
     }
   }
-  SerializationVersion: 115
+  SerializationVersion: 116
   VirtualFolderPath: "NFT Picture Frame"
   VirtualFolderPath: "Inventory"
 }
