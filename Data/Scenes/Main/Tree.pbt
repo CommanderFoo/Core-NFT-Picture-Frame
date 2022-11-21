@@ -77,10 +77,6 @@ Objects {
             }
           }
         }
-        Overrides {
-          Name: "cs:UseNFTCollection"
-          String: ""
-        }
       }
     }
     TemplateAsset {

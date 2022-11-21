@@ -67,46 +67,52 @@ function API.LoadPlayerInventory(player, root)
 
 	if(#tokens > 0) then
 		Task.Wait()
-		
+
 		for t, collection in ipairs(tokens) do
 			local tkns = collection:GetResults()
 
-			for index, token in ipairs(tkns) do
-				if(count == inventory.slotCount) then
-					break
+			if(tkns) then
+				for index, token in ipairs(tkns) do
+					if(count == inventory.slotCount) then
+						break
+					end
+
+					inventory:AddItem(PICTURE_FRAME, {
+
+						customProperties = {
+
+							ContractAddress = token.contractAddress,
+							TokenId = token.tokenId
+
+						}
+
+					})
+
+					count = count + 1
 				end
-
-				inventory:AddItem(PICTURE_FRAME, {
-
-					customProperties = {
-
-						ContractAddress = token.contractAddress,
-						TokenId = token.tokenId
-
-					}
-
-				})
 
 				if(count < inventory.slotCount and collection.hasMoreResults) then
 					local results = collection:GetMoreResults()
 
-					for index, token in ipairs(results) do
-						if(count == inventory.slotCount) then
-							break
+					if(results) then
+						for index, token in ipairs(results) do
+							if(count == inventory.slotCount) then
+								break
+							end
+
+							inventory:AddItem(PICTURE_FRAME, {
+
+								customProperties = {
+
+									ContractAddress = token.contractAddress,
+									TokenId = token.tokenId
+
+								}
+
+							})
+
+							count = count + 1
 						end
-
-						inventory:AddItem(PICTURE_FRAME, {
-
-							customProperties = {
-
-								ContractAddress = token.contractAddress,
-								TokenId = token.tokenId
-
-							}
-
-						})
-
-						count = count + 1
 					end
 				end
 			end
