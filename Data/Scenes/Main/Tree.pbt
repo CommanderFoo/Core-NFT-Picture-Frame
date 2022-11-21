@@ -32,6 +32,7 @@ Objects {
   NetworkRelevanceDistance {
     Value: "mc:eproxyrelevance:critical"
   }
+  IsReplicationEnabledByDefault: true
 }
 Objects {
   Id: 9165938531261343771
@@ -64,10 +65,29 @@ Objects {
         }
       }
     }
+    ParameterOverrideMap {
+      key: 11399100292721880408
+      value {
+        Overrides {
+          Name: "cs:CreatorStorageKey"
+          NetReference {
+            Key: "6aba3122af9c49c8b147ba503c208189"
+            Type {
+              Value: "mc:enetreferencetype:concurrentpersistence"
+            }
+          }
+        }
+        Overrides {
+          Name: "cs:UseNFTCollection"
+          String: ""
+        }
+      }
+    }
     TemplateAsset {
       Id: 3970897973384026206
     }
   }
+  IsReplicationEnabledByDefault: true
 }
 Objects {
   Id: 1827972203888149841
@@ -104,4 +124,5 @@ Objects {
   NetworkRelevanceDistance {
     Value: "mc:eproxyrelevance:critical"
   }
+  IsReplicationEnabledByDefault: true
 }

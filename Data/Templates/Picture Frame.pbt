@@ -36,6 +36,7 @@ Assets {
         NetworkRelevanceDistance {
           Value: "mc:eproxyrelevance:critical"
         }
+        IsReplicationEnabledByDefault: true
       }
       Objects {
         Id: 9538541736989649860
@@ -104,6 +105,7 @@ Assets {
         NetworkRelevanceDistance {
           Value: "mc:eproxyrelevance:critical"
         }
+        IsReplicationEnabledByDefault: true
       }
       Objects {
         Id: 15650001765372343485
@@ -145,6 +147,7 @@ Assets {
         NetworkRelevanceDistance {
           Value: "mc:eproxyrelevance:critical"
         }
+        IsReplicationEnabledByDefault: true
       }
       Objects {
         Id: 13610117087468345290
@@ -209,6 +212,7 @@ Assets {
             }
           }
         }
+        IsReplicationEnabledByDefault: true
       }
       Objects {
         Id: 3503242929895034
@@ -278,6 +282,7 @@ Assets {
             }
           }
         }
+        IsReplicationEnabledByDefault: true
       }
       Objects {
         Id: 17356641426971866300
@@ -348,6 +353,7 @@ Assets {
             }
           }
         }
+        IsReplicationEnabledByDefault: true
       }
       Objects {
         Id: 13232183217428274553
@@ -431,6 +437,7 @@ Assets {
             }
           }
         }
+        IsReplicationEnabledByDefault: true
       }
       Objects {
         Id: 1841104693251589746
@@ -502,6 +509,7 @@ Assets {
           TeamSettings {
           }
         }
+        IsReplicationEnabledByDefault: true
       }
     }
     Assets {
@@ -545,6 +553,7 @@ Assets {
       AssetId: "None"
     }
   }
-  SerializationVersion: 116
+  SerializationVersion: 120
+  DirectlyPublished: true
   VirtualFolderPath: "NFT Picture Frame"
 }

@@ -2,7 +2,7 @@ Assets {
   Id: 13413211497342132484
   Name: "Inventory"
   PlatformAssetType: 29
-  SerializationVersion: 116
+  SerializationVersion: 120
   VirtualFolderPath: "NFT Picture Frame"
   VirtualFolderPath: "Inventory"
   BindingSetAsset {

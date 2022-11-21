@@ -38,45 +38,40 @@ end
 function API.LoadPlayerInventory(player, root)
 	local inventory = API.PLAYERS[player.id]
 	local count = 0
-	local tokens = nil
+	local tokens = {}
 	local set_collection = root:GetCustomProperty("UseNFTCollection")
 
 	Task.Wait()
-	
+
 	if(string.len(set_collection) > 1) then
-		tokens = Blockchain.GetTokens(set_collection)
+		local result, success, error_msg = Blockchain.GetTokens(set_collection)
+
+		if(success == BlockchainTokenResultCode.SUCCESS) then
+			table.insert(tokens, result)
+		end
 	else
-		tokens = Blockchain.GetTokensForPlayer(player)
+		local wallets_result, wallets_status, wallets_err = Blockchain.GetWalletsForPlayer(player)
+
+		if(wallets_status == BlockchainTokenResultCode.SUCCESS) then
+			local wallets = wallets_result:GetResults()
+
+			for wallet_index, wallet in ipairs(wallets) do
+				local result, tokens_status, tokens_err = Blockchain.GetTokensForOwner(wallet.address)
+
+				if(tokens_status == BlockchainTokenResultCode.SUCCESS) then
+					table.insert(tokens, result)
+				end
+			end
+		end
 	end
 
-	if(tokens) then
+	if(#tokens > 0) then
 		Task.Wait()
 		
-		local results = tokens:GetResults()
+		for t, collection in ipairs(tokens) do
+			local tkns = collection:GetResults()
 
-		for index, token in ipairs(results) do
-			if(count == inventory.slotCount) then
-				break
-			end
-
-			inventory:AddItem(PICTURE_FRAME, {
-
-				customProperties = {
-
-					ContractAddress = token.contractAddress,
-					TokenId = token.tokenId
-
-				}
-
-			})
-
-			count = count + 1
-		end
-
-		if(count < inventory.slotCount and tokens.hasMoreResults) then
-			local results = tokens:GetMoreResults()
-
-			for index, token in ipairs(results) do
+			for index, token in ipairs(tkns) do
 				if(count == inventory.slotCount) then
 					break
 				end
@@ -92,7 +87,28 @@ function API.LoadPlayerInventory(player, root)
 
 				})
 
-				count = count + 1
+				if(count < inventory.slotCount and collection.hasMoreResults) then
+					local results = collection:GetMoreResults()
+
+					for index, token in ipairs(results) do
+						if(count == inventory.slotCount) then
+							break
+						end
+
+						inventory:AddItem(PICTURE_FRAME, {
+
+							customProperties = {
+
+								ContractAddress = token.contractAddress,
+								TokenId = token.tokenId
+
+							}
+
+						})
+
+						count = count + 1
+					end
+				end
 			end
 		end
 	end
